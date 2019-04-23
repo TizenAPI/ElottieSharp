@@ -9,8 +9,8 @@
     <Description>ElottieSharp is a Lottie animation view based on Tizen .NET using ElmSharp.</Description>
     <PackageLicense>https://www.apache.org/licenses/LICENSE-2.0</PackageLicense>
     <PackageTags>tizen;tizen.net;lottie</PackageTags>
-    <projectUrl>https://www.tizen.org/</projectUrl>
-    <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
+    <projectUrl>>https://github.com/TizenAPI/ElottieSharp</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/TizenAPI/ElottieSharp/master/assets/images/logo.png</iconUrl>
     <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
   </PropertyGroup>
 
