@@ -17,4 +17,11 @@
   <ItemGroup>
     <PackageReference Include="Tizen.NET" Version="4.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../lib/x86/liblottie-player.so.0">
+      <Pack>true</Pack>
+      <PackagePath>runtimes/linux-x86/native/liblottie-player.so.0</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
