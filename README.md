@@ -5,15 +5,17 @@ ElottieSharp is a library for Tizen .NET that parses [Adobe After Effects](http:
 
 > As the platform version of [Galaxy Watch](https://www.samsung.com/global/galaxy/galaxy-watch/) and [Gear S-series](https://www.samsung.com/global/galaxy/gear-s3/) has been upgraded to version 4.0.0.4, [ElottieSharp 0.9.0-preview](https://www.nuget.org/packages/ElottieSharp/0.9.0-preview) is now cow compatible with  [Galaxy Watch Active](https://www.samsung.com/global/galaxy/galaxy-watch-active/), [Galaxy Watch](https://www.samsung.com/global/galaxy/galaxy-watch/) and [Gear S-series](https://www.samsung.com/global/galaxy/gear-s3/). :tada:
 
+> [ElottieSharp 0.9.1-preview](https://www.nuget.org/packages/ElottieSharp/0.9.1-preview) is now support tizen wearable emulator.
+
 ## Getting Started
 ### Installing package 
 #### nuget.exe
 ```
-nuget.exe install ElottieSharp -Version 0.9.0-preview
+nuget.exe install ElottieSharp -Version 0.9.1-preview
 ```
 #### .csproj
 ```xml
-<PackageReference Include="ElottieSharp" Version="0.9.0-preview" />
+<PackageReference Include="ElottieSharp" Version="0.9.1-preview" />
 ```
  
 ### Quick Start
