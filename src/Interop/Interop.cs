@@ -103,6 +103,9 @@ internal static partial class Interop
         internal static extern int lottie_animation_get_framerate(IntPtr animation);
 
         [DllImport(Libraries.LottiePlayer)]
+        internal static extern int lottie_animation_get_frame_at_pos(IntPtr animation, float pos);
+
+        [DllImport(Libraries.LottiePlayer)]
         internal static extern void lottie_animation_prepare_frame(IntPtr animation, int frameNo, int w, int h);
 
         [DllImport(Libraries.LottiePlayer)]
