@@ -39,6 +39,9 @@ namespace ElottieSharp
         float _currentProgress;
         float _startProgress;
 
+        float _fromProgress;
+        float _toProgress;
+
         /// <summary>
         /// Initializes a new instance of the LottieAnimationView class.
         /// </summary>
@@ -211,6 +214,30 @@ namespace ElottieSharp
         /// </summary>
         public void Play()
         {
+            Play(MinimumProgress, MaximumProgress);
+        }
+
+        /// <summary>
+        /// Play the animation for the given frame segment.
+        /// </summary>
+        /// <param name="from">The frame number to start</param>
+        /// <param name="to">The frame number to end</param>
+        public void Play(int from, int to)
+        {
+            if (from < 0 || to > TotalFrame || from > to)
+            {
+                throw new ArgumentException($"Parameters are not valid. {nameof(from)}:" + from + ", {nameof(to)}:" + to);
+            }
+            Play((float)from/TotalFrame, (float)to/TotalFrame);
+        }
+
+        /// <summary>
+        /// Play the animation for the given progress segment.
+        /// </summary>
+        /// <param name="from">The progress to start</param>
+        /// <param name="to">The progress to end</param>
+        public void Play(float from, float to)
+        {
             if (_animation == IntPtr.Zero)
             {
                 throw new InvalidOperationException("Should set the animation before invoking Play().");
@@ -222,7 +249,21 @@ namespace ElottieSharp
                 return;
             }
 
-            _startProgress = IsPlaying ? MinimumProgress : _currentProgress;
+            if (from >= to)
+            {
+                throw new ArgumentException($"Parameter {nameof(to)} should be larger than {nameof(from)}.", nameof(to));
+            }
+
+            if (from < MinimumProgress)
+            {
+                throw new ArgumentException($"Parameter {nameof(from)} should be larger than {nameof(MinimumProgress)}.", nameof(from));
+            }
+
+            _fromProgress = Clamp(from, MinimumProgress, MaximumProgress);
+            _toProgress = Clamp(to, MinimumProgress, MaximumProgress);
+
+
+            _startProgress = IsPlaying ? _fromProgress : _currentProgress;
             _animator = Interop.Ecore.ecore_animator_timeline_add(DurationTime / Speed, AnimatorCallback, IntPtr.Zero);
             Debug.Assert(_animator != IntPtr.Zero, "Failed to create animator");
 
@@ -241,7 +282,7 @@ namespace ElottieSharp
             EnsureAnimatorDeleted();
             IsPlaying = false;
             Stopped?.Invoke(this, EventArgs.Empty);
-            Seek(MinimumProgress);
+            SeekTo(MinimumProgress);
         }
 
         /// <summary>
@@ -261,7 +302,20 @@ namespace ElottieSharp
             EnsureAnimatorDeleted();
             IsPlaying = false;
             Paused?.Invoke(this, EventArgs.Empty);
-            Seek(_currentProgress);
+            SeekTo(_currentProgress);
+        }
+
+        /// <summary>
+        /// Get the frame count from progress.
+        /// </summary>
+        /// <param name="progress">The progress (0~1.0) to get frame count.</param>
+        /// <returns></returns>
+        public int GetFrameFromProgress(float progress)
+        {
+            if (_animation == IntPtr.Zero)
+                throw new InvalidOperationException("Should set the animation before invoking GetFrameFromProgress().");
+
+            return (int)(progress * TotalFrame);
         }
 
         protected override IntPtr CreateHandle(EvasObject parent)
@@ -288,7 +342,11 @@ namespace ElottieSharp
             base.OnUnrealize();
         }
 
-        void Seek(float progress)
+        /// <summary>
+        /// Seeks to specified progress.
+        /// </summary>
+        /// <param name="progress">The progress (0 ~ 1.0) from the start to seek to</param>
+        public void SeekTo(float progress)
         {
             if (_animation == IntPtr.Zero)
                 throw new InvalidOperationException("Should set the animation before invoking Seek().");
@@ -319,20 +377,20 @@ namespace ElottieSharp
         bool AnimatorCallback(IntPtr data, double progress)
         {
             float nextPos = _startProgress + (float)progress;
-            nextPos = Clamp(nextPos, MinimumProgress, MaximumProgress);
+            nextPos = Clamp(nextPos, _fromProgress, _toProgress);
 
-            Seek(nextPos);
+            SeekTo(nextPos);
 
-            if ((float)progress >= MaximumProgress)
+            if ((float)progress >= _toProgress)
             {
                 EnsureAnimatorDeleted();
-                _startProgress = MinimumProgress;
+                _startProgress = _fromProgress;
 
                 Log.Info(Tag, "Finished");
                 Finished?.Invoke(this, EventArgs.Empty);
                 if (AutoRepeat)
                 {
-                    Play();
+                    Play(_fromProgress,_toProgress);
                 }
                 return false;
             }

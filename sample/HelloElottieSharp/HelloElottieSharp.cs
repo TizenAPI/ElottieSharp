@@ -62,7 +62,7 @@ namespace HelloElottieSharp
                 AutoPlay = true,
                 AutoRepeat = true,
                 MinimumProgress = 0.2f,
-                MaximumProgress = 0.5f,
+                MaximumProgress = 0.8f,
             };
 
             var path = Path.Combine(DirectoryInfo.Resource, "a_mountain.json");
@@ -75,10 +75,15 @@ namespace HelloElottieSharp
             };
             lottie.Size = new Size(500, 500);
 
+            button.Clicked += (s, e) =>
+            {
+                button.Text = lottie.GetFrameFromProgress(0.7f)+"";
+                lottie.Stop();
+            };
 
             Button button2 = new Button(window)
             {
-                Text = "Play",
+                Text = "Play Segment",
                 AlignmentX = -1,
                 WeightX = 1
             };
@@ -86,7 +91,7 @@ namespace HelloElottieSharp
 
             button2.Clicked += (s, e) =>
             {
-                lottie.Play();
+                lottie.Play(30, 50); // lottie.Play(0.5f, 0.7f);
             };
 
             Button button3 = new Button(window)
