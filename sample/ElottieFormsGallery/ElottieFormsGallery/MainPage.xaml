@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<w:IndexPage
+	x:Class="ElottieFormsGallery.MainPage"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:w="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    xmlns:e="clr-namespace:ElottieSharp.Forms;assembly=ElottieSharp.Forms">
+    <w:IndexPage.Children>
+        <ContentPage></ContentPage>
+    </w:IndexPage.Children>
+    <w:IndexPage.ItemTemplate>
+        <DataTemplate>
+            <ContentPage Appearing="OnPageAppearing" Disappearing="OnPageDisappearing">
+                <StackLayout>
+                    <e:ElottieAnimationView
+                        AnimationFile="{Binding AnimationFile}"
+                        AutoRepeat="False"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"/>
+                </StackLayout>
+            </ContentPage>
+        </DataTemplate>
+    </w:IndexPage.ItemTemplate>
+</w:IndexPage>

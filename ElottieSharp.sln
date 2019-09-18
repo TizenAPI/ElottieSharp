@@ -1,15 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElottieSharp", "src\ElottieSharp.csproj", "{3AED791D-4BEE-44FC-904C-2D248E650F41}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloElottieSharp", "sample\HelloElottieSharp\HelloElottieSharp.csproj", "{D3E049F6-2CE9-468F-891F-004F67BB93F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloElottieSharp", "sample\HelloElottieSharp\HelloElottieSharp.csproj", "{D3E049F6-2CE9-468F-891F-004F67BB93F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{46BD2E4C-7C60-4649-BC7E-435511FA4216}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElottieSharpGallery", "sample\ElottieSharpGallery\ElottieSharpGallery.csproj", "{6BD727CA-09F6-4C1A-A312-57686A22862E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElottieSharpGallery", "sample\ElottieSharpGallery\ElottieSharpGallery.csproj", "{6BD727CA-09F6-4C1A-A312-57686A22862E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElottieSharp", "src\ElottieSharp\ElottieSharp.csproj", "{940341AA-A6D3-471D-B7EB-D249FDAE6726}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElottieSharp.Forms", "src\ElottieSharp.Forms\ElottieSharp.Forms.csproj", "{5E358D47-48DF-40E5-9F59-1D1418D626FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElottieFormsGallery", "sample\ElottieFormsGallery\ElottieFormsGallery\ElottieFormsGallery.csproj", "{233A2AD6-1A11-47E6-92D4-22BF23DACE75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElottieFormsGallery.Tizen", "sample\ElottieFormsGallery\ElottieFormsGallery.Tizen\ElottieFormsGallery.Tizen.csproj", "{B838217E-93B6-43F6-B47D-E8B7B36EE489}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ElottieSharpFormsGallery", "ElottieSharpFormsGallery", "{E52D229E-920B-4ED3-BC20-44105095840C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3AED791D-4BEE-44FC-904C-2D248E650F41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3AED791D-4BEE-44FC-904C-2D248E650F41}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3AED791D-4BEE-44FC-904C-2D248E650F41}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3AED791D-4BEE-44FC-904C-2D248E650F41}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3E049F6-2CE9-468F-891F-004F67BB93F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3E049F6-2CE9-468F-891F-004F67BB93F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E049F6-2CE9-468F-891F-004F67BB93F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,6 +33,22 @@ Global
 		{6BD727CA-09F6-4C1A-A312-57686A22862E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BD727CA-09F6-4C1A-A312-57686A22862E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BD727CA-09F6-4C1A-A312-57686A22862E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{940341AA-A6D3-471D-B7EB-D249FDAE6726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{940341AA-A6D3-471D-B7EB-D249FDAE6726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{940341AA-A6D3-471D-B7EB-D249FDAE6726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{940341AA-A6D3-471D-B7EB-D249FDAE6726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E358D47-48DF-40E5-9F59-1D1418D626FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E358D47-48DF-40E5-9F59-1D1418D626FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E358D47-48DF-40E5-9F59-1D1418D626FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E358D47-48DF-40E5-9F59-1D1418D626FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{233A2AD6-1A11-47E6-92D4-22BF23DACE75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233A2AD6-1A11-47E6-92D4-22BF23DACE75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233A2AD6-1A11-47E6-92D4-22BF23DACE75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233A2AD6-1A11-47E6-92D4-22BF23DACE75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B838217E-93B6-43F6-B47D-E8B7B36EE489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B838217E-93B6-43F6-B47D-E8B7B36EE489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B838217E-93B6-43F6-B47D-E8B7B36EE489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B838217E-93B6-43F6-B47D-E8B7B36EE489}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +56,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D3E049F6-2CE9-468F-891F-004F67BB93F0} = {46BD2E4C-7C60-4649-BC7E-435511FA4216}
 		{6BD727CA-09F6-4C1A-A312-57686A22862E} = {46BD2E4C-7C60-4649-BC7E-435511FA4216}
+		{233A2AD6-1A11-47E6-92D4-22BF23DACE75} = {E52D229E-920B-4ED3-BC20-44105095840C}
+		{B838217E-93B6-43F6-B47D-E8B7B36EE489} = {E52D229E-920B-4ED3-BC20-44105095840C}
+		{E52D229E-920B-4ED3-BC20-44105095840C} = {46BD2E4C-7C60-4649-BC7E-435511FA4216}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {621AB047-B0EE-47FC-A85B-11E5BBE3AAE6}
