@@ -1,0 +1,33 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+  <PropertyGroup>
+    <AssemblyName>ElottieSharp.Forms</AssemblyName>
+    <RootNamespace>ElottieSharp.Forms</RootNamespace>
+    <PackageId>ElottieSharp.Forms</PackageId>
+    <authors>Samsung Electronics</authors>
+    <owners>Samsung Electronics</owners>
+    <Description>ElottieSharp.Forms is a Lottie animation view for Xamarin.Froms.</Description>
+    <PackageLicense>https://www.apache.org/licenses/LICENSE-2.0</PackageLicense>
+    <PackageTags>xamarin;forms;tizen;tizen.net;lottie</PackageTags>
+    <projectUrl>>https://github.com/TizenAPI/ElottieSharp</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/TizenAPI/ElottieSharp/master/assets/images/logo.png</iconUrl>
+    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;tizen40</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <Compile Remove="Platforms\**\*.cs" />
+    <None Include="Platforms\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('tizen')) ">
+    <Compile Include="Platforms\Tizen\**\*.cs" />
+    <PackageReference Include="Tizen.NET" Version="4.0.0">
+      <ExcludeAssets>Runtime</ExcludeAssets>
+    </PackageReference>
+    <ProjectReference Include="..\ElottieSharp\ElottieSharp.csproj" />
+  </ItemGroup>
+</Project>
