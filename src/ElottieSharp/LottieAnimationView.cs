@@ -19,6 +19,7 @@ using Tizen;
 using ElmSharp;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.IO;
 
 namespace ElottieSharp
 {
@@ -28,6 +29,8 @@ namespace ElottieSharp
     public class LottieAnimationView : EvasObject
     {
         public static string Tag { get; set; } = "Elottie";
+
+        static bool s_UseRlottie = File.Exists("/usr/lib/libRlottie-player.so.0");
 
         IntPtr _animation = IntPtr.Zero;
         IntPtr _animator = IntPtr.Zero;
@@ -191,16 +194,16 @@ namespace ElottieSharp
         {
             if (_animation != IntPtr.Zero)
             {
-                Interop.LottiePlayer.lottie_animation_destroy(_animation);
+                NativePlayerDelegator.InvokeAnimationDestroy(_animation);
                 _animation = IntPtr.Zero;
             }
 
-            _animation = Interop.LottiePlayer.lottie_animation_from_file(file);
+            _animation = NativePlayerDelegator.InvokeSetAnimationFile(file);
             if (_animation != IntPtr.Zero)
             {
                 CurrentFrame = -1;
-                TotalFrame = Interop.LottiePlayer.lottie_animation_get_totalframe(_animation);
-                DurationTime = Interop.LottiePlayer.lottie_animation_get_duration(_animation);
+                TotalFrame = NativePlayerDelegator.InvokeAnimationGetTotalFrame(_animation);
+                DurationTime = NativePlayerDelegator.InvokeAnimationGetDuration(_animation);
                 Log.Error(Tag, "SetAnimation - file :" + file + ", DurationTime:" + DurationTime + " , TotalFrame:" + TotalFrame);
             }
             else
@@ -336,7 +339,7 @@ namespace ElottieSharp
             EnsureAnimatorDeleted();
             if (_animation != IntPtr.Zero)
             {
-                Interop.LottiePlayer.lottie_animation_destroy(_animation);
+                NativePlayerDelegator.InvokeAnimationDestroy(_animation);
                 _animation = IntPtr.Zero;
             }
             base.OnUnrealize();
@@ -367,8 +370,8 @@ namespace ElottieSharp
 
             int w = Size.Width;
             int h = Size.Height;
-            Interop.LottiePlayer.lottie_animation_render_async(_animation, CurrentFrame, buffer, w, h, imageRowStride);
-            Interop.LottiePlayer.lottie_animation_render_flush(_animation);
+            NativePlayerDelegator.InvokeAnimationRenderAsync(_animation, CurrentFrame, buffer, w, h, imageRowStride);
+            NativePlayerDelegator.InvokeAnimationRenderFlush(_animation);
 
             Interop.Evas.evas_object_image_data_set(RealHandle, buffer);
             Interop.Evas.evas_object_image_data_update_add(RealHandle, 0, 0, w, h);

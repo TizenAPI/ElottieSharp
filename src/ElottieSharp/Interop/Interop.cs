@@ -24,6 +24,7 @@ internal static partial class Interop
         internal const string Ecore = "libecore.so.1";
         internal const string Evas = "libevas.so.1";
         internal const string LottiePlayer = "liblottie-player.so.0";
+        internal const string Rlottie = "librlottie.so.0";
     }
 
     internal static partial class Ecore
@@ -112,6 +113,42 @@ internal static partial class Interop
         internal static extern void lottie_animation_render_async(IntPtr animation, int frameNo, IntPtr buffer, int w, int h, int bytesPerLine);
 
         [DllImport(Libraries.LottiePlayer)]
+        internal static extern void lottie_animation_render_flush(IntPtr animation);
+    }
+
+    internal static partial class Rlottie
+    {
+        [DllImport(Libraries.Rlottie)]
+        internal static extern IntPtr lottie_animation_from_file(string file);
+
+        [DllImport(Libraries.Rlottie)]
+        internal static extern IntPtr lottie_animation_from_data(string data, string key);
+
+        [DllImport(Libraries.Rlottie)]
+        internal static extern void lottie_animation_destroy(IntPtr animation);
+
+        [DllImport(Libraries.Rlottie)]
+        internal static extern void lottie_animation_get_size(IntPtr animation, out int w, out int h);
+
+        [DllImport(Libraries.Rlottie)]
+        internal static extern double lottie_animation_get_duration(IntPtr animation);
+
+        [DllImport(Libraries.Rlottie)]
+        internal static extern int lottie_animation_get_totalframe(IntPtr animation);
+
+        [DllImport(Libraries.Rlottie)]
+        internal static extern int lottie_animation_get_framerate(IntPtr animation);
+
+        [DllImport(Libraries.Rlottie)]
+        internal static extern int lottie_animation_get_frame_at_pos(IntPtr animation, float pos);
+
+        [DllImport(Libraries.Rlottie)]
+        internal static extern void lottie_animation_prepare_frame(IntPtr animation, int frameNo, int w, int h);
+
+        [DllImport(Libraries.Rlottie)]
+        internal static extern void lottie_animation_render_async(IntPtr animation, int frameNo, IntPtr buffer, int w, int h, int bytesPerLine);
+
+        [DllImport(Libraries.Rlottie)]
         internal static extern void lottie_animation_render_flush(IntPtr animation);
     }
 }
