@@ -9,15 +9,17 @@ ElottieSharp is a library for Tizen .NET that parses [Adobe After Effects](http:
 
 > [ElottieSharp.Forms 0.9.3-preview](https://www.nuget.org/packages/ElottieSharp.Forms/0.9.3-preview) is now only support tizen. (not android, iOS support yet)
 
+> [ElottieSharp 0.9.4-preview](https://www.nuget.org/packages/ElottieSharp/0.9.4-preview) and [ElottieSharp.Forms 0.9.4-preview](https://www.nuget.org/packages/ElottieSharp.Forms/0.9.4-preview) are now support [Galaxy Watch Active2](https://www.samsung.com/global/galaxy/galaxy-watch-active2/).
+
 ## Getting Started for *ElottieSharp*
 ### Installing package 
 #### nuget.exe
 ```
-nuget.exe install ElottieSharp -Version 0.9.3-preview
+nuget.exe install ElottieSharp -Version 0.9.4-preview
 ```
 #### .csproj
 ```xml
-<PackageReference Include="ElottieSharp" Version="0.9.3-preview" />
+<PackageReference Include="ElottieSharp" Version="0.9.4-preview" />
 ```
  
 ### Quick Start
@@ -135,11 +137,11 @@ Returns the duration time of animation.
 ### Installing package 
 #### nuget.exe
 ```
-nuget.exe install ElottieSharp.Forms -Version 0.9.3-preview
+nuget.exe install ElottieSharp.Forms -Version 0.9.4-preview
 ```
 #### .csproj
 ```xml
-<PackageReference Include="ElottieSharp.Forms" Version="0.9.3-preview" />
+<PackageReference Include="ElottieSharp.Forms" Version="0.9.4-preview" />
 ```
  
 ### Quick Start
