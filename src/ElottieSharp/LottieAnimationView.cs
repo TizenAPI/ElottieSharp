@@ -20,6 +20,7 @@ using ElmSharp;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.IO;
+using static Interop.Ecore;
 
 namespace ElottieSharp
 {
@@ -32,6 +33,7 @@ namespace ElottieSharp
 
         static bool s_UseRlottie = File.Exists("/usr/lib/libRlottie-player.so.0");
 
+        readonly EcoreTimelineCallback _animatorCallbackDelegate;
         IntPtr _animation = IntPtr.Zero;
         IntPtr _animator = IntPtr.Zero;
         EvasObjectEvent _showed;
@@ -53,6 +55,7 @@ namespace ElottieSharp
         {
             Shown += OnShown;
             Hid += OnHid;
+            _animatorCallbackDelegate = AnimatorCallback;
         }
 
         /// <summary>
@@ -267,7 +270,7 @@ namespace ElottieSharp
 
 
             _startProgress = IsPlaying ? _fromProgress : _currentProgress;
-            _animator = Interop.Ecore.ecore_animator_timeline_add(DurationTime / Speed, AnimatorCallback, IntPtr.Zero);
+            _animator = Interop.Ecore.ecore_animator_timeline_add(DurationTime / Speed, _animatorCallbackDelegate, IntPtr.Zero);
             Debug.Assert(_animator != IntPtr.Zero, "Failed to create animator");
 
             IsPlaying = true;
