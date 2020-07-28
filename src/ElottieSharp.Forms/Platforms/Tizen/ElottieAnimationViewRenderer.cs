@@ -143,6 +143,9 @@ namespace ElottieSharp.Forms.Tizen
 
         void UpdateAnimationFile()
         {
+            if (string.IsNullOrEmpty(Element.AnimationFile))
+                return;
+
             Control.SetAnimation(ResourcePath.GetPath(Element.AnimationFile));
             ElementController.SendAnimationInitialized(new AnimationInitializedEventArgs(Control.TotalFrame, Control.DurationTime, Control.IsPlaying));
             if (Element.AutoPlay)

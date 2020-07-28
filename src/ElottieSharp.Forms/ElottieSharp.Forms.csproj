@@ -8,7 +8,7 @@
     <Description>ElottieSharp.Forms is a Lottie animation view for Xamarin.Froms.</Description>
     <PackageLicense>https://www.apache.org/licenses/LICENSE-2.0</PackageLicense>
     <PackageTags>xamarin;forms;tizen;tizen.net;lottie</PackageTags>
-    <projectUrl>>https://github.com/TizenAPI/ElottieSharp</projectUrl>
+    <projectUrl>https://github.com/TizenAPI/ElottieSharp</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/TizenAPI/ElottieSharp/master/assets/images/logo.png</iconUrl>
     <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
   </PropertyGroup>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.967" />
     <Compile Remove="Platforms\**\*.cs" />
     <None Include="Platforms\**\*.cs" />
   </ItemGroup>
