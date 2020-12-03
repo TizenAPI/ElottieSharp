@@ -15,11 +15,11 @@ ElottieSharp is a library for Tizen .NET that parses [Adobe After Effects](http:
 ### Installing package 
 #### nuget.exe
 ```
-nuget.exe install ElottieSharp -Version 0.9.4-preview
+nuget.exe install ElottieSharp -Version 0.9.7-preview
 ```
 #### .csproj
 ```xml
-<PackageReference Include="ElottieSharp" Version="0.9.4-preview" />
+<PackageReference Include="ElottieSharp" Version="0.9.7-preview" />
 ```
  
 ### Quick Start
@@ -35,6 +35,10 @@ var animation = new new LottieAnimationView(window)
     WeightY = 1,
     AutoPlay = true,
 };
+
+// Set the animation size
+animation.SetSize(360, 360);
+
 animation.Show();
 
 // Loading the animation file from a file path
@@ -67,6 +71,13 @@ Properties:
 - **Speed**: The speed of the animation playback. Higher speed equals faster time. The default value is `1.0`.
 - **MinumumProgress**: The start progress of the animation (0 ~ 1.0). The default value is `0`.
 - **MaximumProgress**: The end progress of the animation (0 ~ 1.0). The default value is `1.0`.
+
+#
+#### Set the Animation Size
+```cs
+animation.SetSize(360, 360);
+```
+Sets the size of animation to render properly. Nothing to shown if you don't set the size before playing the animation.
 
 #
 #### Loading from a File Path
@@ -137,11 +148,11 @@ Returns the duration time of animation.
 ### Installing package 
 #### nuget.exe
 ```
-nuget.exe install ElottieSharp.Forms -Version 0.9.4-preview
+nuget.exe install ElottieSharp.Forms -Version 0.9.7-preview
 ```
 #### .csproj
 ```xml
-<PackageReference Include="ElottieSharp.Forms" Version="0.9.4-preview" />
+<PackageReference Include="ElottieSharp.Forms" Version="0.9.7-preview" />
 ```
  
 ### Quick Start
@@ -153,6 +164,8 @@ The simplest way to use it is with ELottieAnimationView:
 var animation = new ELottieAnimationView
 {
     AnimationFile = "lottie.json",
+    WidthRequest = 360,
+    HeightReqyest = 360,
     HorizontalOptions = LayoutOptions.FillAndExpand,
     VerticalOptions = LayoutOptions.FillAndExpand
 };
@@ -167,10 +180,14 @@ animation.Play();
 <e:ElottieAnimationView
     AnimationFile = "lottie.json"
     AutoPlay = "True"
+    WidthRequest = "360",
+    HeightReqyest = "360",                        
     HorizontalOptions="FillAndExpand"
     VerticalOptions="FillAndExpand"
 />
 ```
+
+> Make sure that `WidthRequest` and `HeightRequest` properties must be set before playing the animation. To prevent misuse, `InvalidOperationException` will be thrown, if you don't set these properties before using it.
 
 ### ELottieAnimationView
 `ElottieAnimationView` is a `View (Xamarin.Forms)` subclass that displays animation content.
@@ -211,7 +228,7 @@ Properties:
 - **MinumumProgress**: The start progress of the animation (0 ~ 1.0). The default value is `0`.
 - **MaximumProgress**: The end progress of the animation (0 ~ 1.0). The default value is `1.0`.
 
->  By default. the initial value of animation view's size(width, height) is 0. Make sure that using whether `WidthRequest`. `HeightRequest` properties or `LayoutOptions` like `FillAndExpand` to request the size of animation view.
+>  By default. the initial value of animation view's size(width, height) is 0. Make sure that using whether `WidthRequest`. `HeightRequest` properties to request the size of animation view. Otherwise, `InvalidOperationException` will be thrown.
 
 #
 #### Loading from a File Path
