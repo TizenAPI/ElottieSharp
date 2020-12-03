@@ -71,9 +71,7 @@ namespace ElottieSharpGallery
                     WeightX = 1,
                     WeightY = 1,
                     AutoRepeat = true,
-                    MinimumWidth = window.ScreenSize.Width,
                 };
-                _views[i].SetSize(window.ScreenSize);
                 _views[i].Show();
 
                 var path = Path.Combine(DirectoryInfo.Resource, _files[i]);

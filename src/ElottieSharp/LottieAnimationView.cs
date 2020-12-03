@@ -55,6 +55,7 @@ namespace ElottieSharp
         {
             Shown += OnShown;
             Hid += OnHid;
+            Resized += OnResized;
             _animatorCallbackDelegate = AnimatorCallback;
         }
 
@@ -175,7 +176,7 @@ namespace ElottieSharp
         /// <summary>
         /// Gets or sets the desired size of animation.
         /// </summary>
-        [Obsolete ("This property is obsolete as of 0.9.7-preview. Prelase use SetSize() instead")]
+        [Obsolete ("This property is obsolete as of 0.9.7-preview. Use Resize() instead.")]
         public Size Size
         {
             get
@@ -188,25 +189,6 @@ namespace ElottieSharp
             {
                 Interop.Evas.evas_object_image_size_set(RealHandle, value.Width, value.Height);
             }
-        }
-
-        /// <summary>
-        /// Sets the desired size of animation.
-        /// </summary>
-        /// <param name="width">The width of animatoin</param>
-        /// <param name="height">The height of animatoin</param>
-        public void SetSize(int width, int height)
-        {
-            Interop.Evas.evas_object_image_size_set(RealHandle, width, height);
-        }
-
-        /// <summary>
-        /// Sets the desired size of animation.
-        /// </summary>
-        /// <param name="size">The size of animation</param>
-        public void SetSize(Size size)
-        {
-            Interop.Evas.evas_object_image_size_set(RealHandle, size.Width, size.Height);
         }
 
         /// <summary>
@@ -435,6 +417,18 @@ namespace ElottieSharp
         {
             Log.Info(Tag, "OnHid");
             Stop();
+        }
+
+        void OnResized(object sender, EventArgs e)
+        {
+            Log.Info(Tag, "OnResized");
+            var geometry = Geometry;
+
+            // control is not yet fully initialized
+            if (geometry.Width <= 0 || geometry.Height <= 0)
+                return;
+
+            Interop.Evas.evas_object_image_size_set(RealHandle, geometry.Size.Width, geometry.Size.Height);
         }
 
         void EnsureAnimatorDeleted()
