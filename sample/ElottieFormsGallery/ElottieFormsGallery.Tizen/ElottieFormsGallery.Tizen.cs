@@ -1,6 +1,6 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
-using Tizen.Wearable.CircularUI.Forms.Renderer;
+using Tizen.Wearable.CircularUI.Forms;
 
 namespace ElottieFormsGallery
 {
