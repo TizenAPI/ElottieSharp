@@ -73,7 +73,7 @@ namespace HelloElottieSharp
             {
                 button.Text = e.CurrentFrame+"";
             };
-            lottie.Size = new Size(500, 500);
+            lottie.SetSize(500, 500);
 
             button.Clicked += (s, e) =>
             {

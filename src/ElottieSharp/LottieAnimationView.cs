@@ -175,6 +175,7 @@ namespace ElottieSharp
         /// <summary>
         /// Gets or sets the desired size of animation.
         /// </summary>
+        [Obsolete ("This property is obsolete as of 0.9.7-preview. Prelase use SetSize() instead")]
         public Size Size
         {
             get
@@ -187,6 +188,25 @@ namespace ElottieSharp
             {
                 Interop.Evas.evas_object_image_size_set(RealHandle, value.Width, value.Height);
             }
+        }
+
+        /// <summary>
+        /// Sets the desired size of animation.
+        /// </summary>
+        /// <param name="width">The width of animatoin</param>
+        /// <param name="height">The height of animatoin</param>
+        public void SetSize(int width, int height)
+        {
+            Interop.Evas.evas_object_image_size_set(RealHandle, width, height);
+        }
+
+        /// <summary>
+        /// Sets the desired size of animation.
+        /// </summary>
+        /// <param name="size">The size of animation</param>
+        public void SetSize(Size size)
+        {
+            Interop.Evas.evas_object_image_size_set(RealHandle, size.Width, size.Height);
         }
 
         /// <summary>
@@ -332,8 +352,6 @@ namespace ElottieSharp
             Interop.Evas.evas_object_image_alpha_set(evasImage, true);
             _showed = new EvasObjectEvent(this, evasImage, EvasObjectCallbackType.Show);
             _hid = new EvasObjectEvent(this, evasImage, EvasObjectCallbackType.Hide);
-            //FIXME
-            Interop.Evas.evas_object_image_size_set(evasImage, 360, 360);
             return evasImage;
         }
 
@@ -371,8 +389,10 @@ namespace ElottieSharp
             IntPtr buffer = Interop.Evas.evas_object_image_data_get(RealHandle, true);
             int imageRowStride = Interop.Evas.evas_object_image_stride_get(RealHandle);
 
-            int w = Size.Width;
-            int h = Size.Height;
+            int w;
+            int h;
+            Interop.Evas.evas_object_image_size_get(RealHandle, out w, out h);
+
             NativePlayerDelegator.InvokeAnimationRenderAsync(_animation, CurrentFrame, buffer, w, h, imageRowStride);
             NativePlayerDelegator.InvokeAnimationRenderFlush(_animation);
 

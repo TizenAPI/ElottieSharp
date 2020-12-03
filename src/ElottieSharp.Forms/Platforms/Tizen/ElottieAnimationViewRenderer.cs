@@ -20,6 +20,7 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Tizen;
 using TForms = Xamarin.Forms.Forms;
+using ESize = ElmSharp.Size;
 
 [assembly: ExportRenderer(typeof(ElottieAnimationView), typeof(ElottieAnimationViewRenderer))]
 namespace ElottieSharp.Forms.Tizen
@@ -73,6 +74,11 @@ namespace ElottieSharp.Forms.Tizen
 
         protected override void OnElementChanged(ElementChangedEventArgs<ElottieAnimationView> e)
         {
+            if (!e.NewElement.IsSet(VisualElement.WidthRequestProperty) || !e.NewElement.IsSet(VisualElement.HeightRequestProperty))
+            {
+                throw new InvalidOperationException("WidthRequest and HeightRequest should be set for rendering animation correctly.");
+            }
+
             if (Control == null)
             {
                 SetNativeControl(new LottieAnimationView(TForms.NativeParent));
@@ -98,7 +104,15 @@ namespace ElottieSharp.Forms.Tizen
                 e.NewElement.PauseRequested += OnPauseRequested;
                 e.NewElement.SeekRequested += OnSeekRequested;
             }
+
             base.OnElementChanged(e);
+        }
+
+        protected override ESize Measure(int availableWidth, int availableHeight)
+        {
+            var size = new ESize(TForms.ConvertToScaledPixel(availableWidth), TForms.ConvertToScaledPixel(availableHeight));
+            Control.SetSize(size);
+            return size;
         }
 
         void UpdateAutoPlay(bool initialize)
